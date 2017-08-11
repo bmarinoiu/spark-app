@@ -22,6 +22,8 @@
 # 
 */
 /* SparkApp.scala */
+import java.io.FileWriter
+
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Dataset, SparkSession}
 
@@ -31,10 +33,19 @@ object SparkApp {
     val spark = SparkSession.builder().config(sparkConf).getOrCreate()
 
     import spark.implicits._
-    val dataset = spark.range(1, 101, 1, 2)
+    var end = if (args.size > 0) {
+      println("args is: " + args(0))
+      args(0)
+    }
+    else "101"
+
+    val dataset = spark.range(1, Integer.parseInt(end), 1, 2)
     val avg = dataset.agg("id" -> "avg").head.getAs[Double](0)
     spark.stop()
 
     println(s"Spark App average : $avg")
+    val file = new FileWriter("/tmp/bogdan_out.txt")
+    file.write(s"Spark App average value is: $avg")
+    file.close()
   }
 }

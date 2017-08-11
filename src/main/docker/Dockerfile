@@ -28,7 +28,7 @@ MAINTAINER Saniya Tech <saniyatech@gmail.com>
 ##### Spark Environment Vars #####
 ENV INSTALL_DIR /usr/local
 ENV SPARK_HOME $INSTALL_DIR/spark
-ENV SPARK_VERSION 2.1.0
+ENV SPARK_VERSION 2.2.0
 ENV HADOOP_VERSION 2.7
 ENV SPARK_TGZ_URL https://www.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK_VERSION-bin-hadoop$HADOOP_VERSION.tgz
 
